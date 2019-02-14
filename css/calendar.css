@@ -14,24 +14,28 @@ header{
 #calendar{
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     margin: 0 auto;
     border: 2px solid black;
     background-color: lightgrey; 
 }
 
-.weekDay{
+#dates{
     width: 11.42857vw;
+    height: 11.42857vw;
+    border: 1px solid coral;
+
+}
+.weekDays{
+    display: flex;
+    flex-direction: row;
     padding: 1em;
     border: 1px solid red;
 }
 
-.day{
-    width: 11.42857vw;
-    height: 11.42857vw;
-    border: 1px solid red;
-}
 .dayName{
-    color: yellow;
+    width: 11.42857vw;
+    border: 1px solid red;
+    color: black;
 }
