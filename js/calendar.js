@@ -1,15 +1,38 @@
 
 let daysNames = ["Monday","Tuesday","Wensday","Thursday","Friday","Saturday","Sunday"];
+let maxDatOfTheMonth = 28; 
 
 function displayWeek(day){
-
-    let weekDays= document.getElementById("weekDays")
+    let week= document.getElementById("week")
     let dayOfTheWeek = document.createElement("div");
+    dayOfTheWeek.classList.add("weekDayName");
     let dayName = document.createElement("p");
-    dayOfTheWeek.classList.add("dayName");
     dayName.innerHTML=day;
     dayOfTheWeek.appendChild(dayName);
-    weekDays.appendChild(dayOfTheWeek);
+    week.appendChild(dayOfTheWeek);
 }
 
-daysNames.forEach( (day) => displayWeek(day) );
+function displayDates(numOfDate){
+    let datesContainer= document.getElementById("datesContainer")
+    let date = document.createElement("div");
+    date.classList.add("date");
+    let dateNumber= document.createElement("div");
+    dateNumber.innerHTML=numOfDate;
+    date.appendChild(dateNumber);
+    datesContainer.appendChild(date);
+    dateNumber.classList.add("dateNumber");
+}
+
+function drawDates(){
+    for(let i=1; i<=maxDatOfTheMonth; i++)
+    { 
+        this.displayDates(i);
+    }
+}
+
+
+
+daysNames.forEach( (day) => displayWeek(day));
+drawDates();
+
+

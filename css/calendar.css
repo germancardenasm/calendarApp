@@ -7,35 +7,46 @@
 body{
     padding: 5% 10%;
 }
-header{
-    padding: 5em;
 
-}
 #calendar{
-    position: relative;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     margin: 0 auto;
-    border: 2px solid black;
+    border: 1px solid black;
     background-color: lightgrey; 
 }
 
-#dates{
-    width: 11.42857vw;
-    height: 11.42857vw;
-    border: 1px solid coral;
-
-}
-.weekDays{
+#week{
     display: flex;
     flex-direction: row;
-    padding: 1em;
-    border: 1px solid red;
 }
 
-.dayName{
-    width: 11.42857vw;
-    border: 1px solid red;
-    color: black;
+.weekDayName{
+    width: 14.2857%;
+    text-align: center;
+    border: 1px solid green;
+    color: darkgreen;
 }
+
+#datesContainer{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.date{
+    position: relative;
+    width: 14.2857%;
+    padding-top:  14.2857%;
+    border: 1px solid coral;
+}
+
+.dateNumber{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.25em;
+}
+
+
