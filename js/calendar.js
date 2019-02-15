@@ -28,11 +28,26 @@ function displayDates(numOfDate){
     dateNumber.classList.add("dateNumber");
 }
 
+function fullFillView(){
+    let datesContainer= document.getElementById("datesContainer")
+    let date = document.createElement("div");
+    date.classList.add("fullFillSpace");
+    datesContainer.appendChild(date);
+}
 function drawDates(){
     for(let i=1; i<=maxDatOfTheMonth; i++)
     { 
         this.displayDates(i);
     }
+    if(maxDatOfTheMonth%7>1)
+    {
+      let qtyOfSpacesToFullFill = 7-maxDatOfTheMonth%7;
+    
+      for(let i=0; i<qtyOfSpacesToFullFill; i++)
+      { 
+        this.fullFillView();
+      }
+    }       
 }
 
 
