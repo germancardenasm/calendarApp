@@ -1,12 +1,17 @@
 
-let daysNames = ["Monday","Tuesday","Wensday","Thursday","Friday","Saturday","Sunday"];
-let maxDatOfTheMonth = 28; 
+let daysNames = ["Sunday","Monday","Tuesday","Wensday","Thursday","Friday","Saturday"];
+let maxDatOfTheMonth = 31; 
+
+function writeSelectedMonth(monthName){
+    let month = document.getElementById("monthName");
+    month.innerHTML=monthName;
+}
 
 function displayWeek(day){
     let week= document.getElementById("week")
     let dayOfTheWeek = document.createElement("div");
     dayOfTheWeek.classList.add("weekDayName");
-    let dayName = document.createElement("p");
+    let dayName = document.createElement("h3");
     dayName.innerHTML=day;
     dayOfTheWeek.appendChild(dayName);
     week.appendChild(dayOfTheWeek);
@@ -31,7 +36,7 @@ function drawDates(){
 }
 
 
-
+writeSelectedMonth("January");
 daysNames.forEach( (day) => displayWeek(day));
 drawDates();
 

@@ -8,12 +8,23 @@ body{
     padding: 5% 10%;
 }
 
+header{
+    margin: 1em;
+    color: #black;
+}
+
 #calendar{
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    border: 1px solid black;
-    background-color: lightgrey; 
+    border: 1px solid #00adb5;
+}
+
+#month{
+    text-align: center;
+    padding: 0.5em;
+    color: #00adb5;
+    border-bottom: 1px solid #00adb5;
 }
 
 #week{
@@ -23,13 +34,17 @@ body{
 
 .weekDayName{
     width: 14.2857%;
+    border-right: 1px solid #00adb5;
+    border-bottom: 1px solid #00adb5;
+    color: #393e46;
     text-align: center;
-    border: 1px solid green;
-    color: darkgreen;
+    padding: 0.5em;
+}
+.weekDayName:last-child{
+    border-right: none;
 }
 
 #datesContainer{
-    
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -39,14 +54,20 @@ body{
     position: relative;
     width: 14.2857%;
     padding-top:  14.2857%;
-    border: 1px solid coral;
+    border-right: 1px solid #00adb5;
+    border-bottom: 1px solid #00adb5;
+    background-color: #eeeeee; 
 }
+
+
 
 .dateNumber{
     position: absolute;
     top: 0;
     left: 0;
-    padding: 0.25em;
+    padding: 0.5em;
 }
 
-
+.text-center{
+    text-align: center;
+}
