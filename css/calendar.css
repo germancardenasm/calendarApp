@@ -33,6 +33,7 @@ header{
 
 #month{
     text-align: center;
+    font-size: 14px;
     padding: 0.5em;
     color: var(--primaryColor);
     border-bottom: 1px solid var(--thirdColor);
@@ -94,7 +95,30 @@ header{
     background-color: var(--thirdColor); 
 }
 
-
 .text-center{
     text-align: center;
+}
+
+.invisible {
+    visibility: hidden;
+  }
+
+#appointmentMenu{
+    border: 2px double var(--thirdColor);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 2%;
+    margin: 2em auto;
+    padding: 1em;
+}
+
+input[type="text"], input[type="email"], input[type="number"]{
+    width: 70%;
+    max-width: 40em;
+    border: none;
+    border-bottom: 2px solid var(--thirdColor);
+    margin: 1em;
+  }
+label{
+    font-size: 12px;
 }

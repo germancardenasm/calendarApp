@@ -10,9 +10,67 @@
 		  <div id="calendar">	
 				<div id="month"><h2 id="monthName"></h2></div>
 				<div id="week"></div>
-			    <div id="datesContainer"></div>
-	      </div>
+			  <div id="datesContainer"></div>
+			</div>
+			<div id="appointmentMenu" >
+				<form id="survey-form">
+					<label id="name-label" for=name>Name: </label> 
+					<input type="text" id="appointmentName" name="name" placeholder="Enter Appointment name" required/><br>
+					<label id="email-label" for=email>Email: </label> 
+					<input type="email" id="email" name="email" placeholder="Enter Email to receive invitation" required/><br>
+					<label for=start>Enter start time</label>
+					<input type="datetime-local" id="start" name="start" placeholder="Enter start time" value="" required/><br>
+					<label for=end>Enter end time</label>
+					<input type="datetime-local" id="end" name="end" placeholder="Enter end time" value="" required/><br><br><br>
+					<label for=current-rol>Which option best describes your current role?</label>
+					<input type="email" id="email" name="email" placeholder="Enter Email to receive invitation" required/><br>
+					<label for=current-rol>Which option best describes your current role?</label>
 
+
+
+					<select id="dropdown" name="current-rol" placeholder="Select an Option">
+							<option value="Student" disabled >Select An Option</option>
+							<option value="Student">Student</option>
+							<option value="Full Time Job">Full Time Job</option>
+							<option value="Full Time Learner">Full Time Learner</option>
+							<option value="Prefer not to say">Prefer not to say</option>
+							<option value="other">Other</option>
+					</select><br>
+	
+					<label for=recommendation>* How likely is that you would recommend 
+					freeCodeCamp to a friend?</label>
+					<div class="divAnswer">
+					<input type="radio" name="recommendation" value="Definitely" class="radio-input">Definitely<br>
+					<input type="radio" name="recommendation" value="Maybe" class="radio-input">Maybe<br>
+					<input type="radio" name="recommendation" value="Not sure" class="radio-input">Not sure<br>
+					</div><br>
+	
+					<label for=current-rol>What do yo like more in FCC?</label>
+					<select id="dropdown" name="current-rol" placeholder="Select an Option">
+							<option value="Student" disabled >Select An Option</option>
+							<option value="Challenge">Challenge</option>
+							<option value="Projects">Projects</option>
+							<option value="Community">Community</option>
+							<option value="Open Source">Open Source</option>
+					</select><br>
+	
+					<label for="toBeImproved">Things that should be improved in the future
+							(Check all that apply): </label>
+					<div class="divAnswer">
+					<input type="checkbox" name="Front-End Projects" value="Front-End Projects">Front-End Projects<br>
+					<input type="checkbox" name="Back-end Projects" value="Back-end Projects">Back-end Projects<br>
+					<input type="checkbox" name="Data Visualization" value="Data Visualization">Data Visualization<br>
+					<input type="checkbox" name="Challenges" value="Challenges">Challenges<br>
+					</div><br>
+	
+					<label for="comments">Any Comments or Suggestions?</label>
+					<textarea type="textarea" id="comments" name="comments" placeholder="Enter your comments"></textarea><br>
+	
+					<input type="submit" id="submit"> 
+				
+	
+			</form>
+			</div>
 		</div>
 		<script src="js/months.js"></script>
 		<script src="js/calendar.js"></script>

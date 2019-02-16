@@ -2,20 +2,21 @@
 let daysNames = ["S","M","T","W","T","F","S"];
 
 
-let presentDate = { 
-    day: 0,
-    monthNumber: 0,
+let selectedDate = { 
+    day: 1,
+    month: 1,
+    year: 2019
 } 
 
 function getPresentDate(){
     let date = new Date();
-    presentDate.day=date.getDate();
-    presentDate.monthNumber=date.getMonth()+1;
+    selectedDate.day=date.getDate();
+    selectedDate.month=date.getMonth()+1;
 }
 
 function writeSelectedMonth(monthName){
     let month = document.getElementById("monthName");
-    month.innerHTML=months[presentDate.monthNumber].name;
+    month.innerHTML=months[selectedDate.month].name;
 }
 
 function displayWeek(day){
@@ -32,6 +33,7 @@ function displayDates(numOfDate){
     let datesContainer= document.getElementById("datesContainer")
     let date = document.createElement("div");
     date.addEventListener("click",selectDate);
+    date.addEventListener("dblclick", displayAppointmentMenu)
     date.classList.add("date");
     date.id=numOfDate; 
     date.innerHTML=numOfDate;
@@ -46,7 +48,7 @@ function fullFillView(){
 }
 
 function drawDates(){
-    for(let i=1; i<=months[presentDate.monthNumber].days; i++)
+    for(let i=1; i<=months[selectedDate.month].days; i++)
       this.displayDates(i);
     
     if(thereIsBlankSpace())
@@ -54,11 +56,11 @@ function drawDates(){
 }
 
 function thereIsBlankSpace(){
-    return months[presentDate.monthNumber].days%7>1
+    return months[selectedDate.month].days%7>1
 }
 
 function drawBlankSpace(){
-    let qtyOfSpacesToFullFill = 7-months[presentDate.monthNumber].days;
+    let qtyOfSpacesToFullFill = 7-months[selectedDate.month].days;
     for(let i=0; i<qtyOfSpacesToFullFill; i++)
     { 
       this.fullFillView();
@@ -76,12 +78,36 @@ function selectDate(selectedDate){
 function highLigthDate(dayToHighLigth){
     let day = document.getElementById(dayToHighLigth);
     day.classList.add("highLigth");
+    selectedDate.day=day.id;
+
+}
+
+function displayAppointmentMenu(){
+
+  setDefaultAppointmentDate();
+}
+
+function setDefaultAppointmentDate(){
+  document.getElementById("start").value=generateStringDate()+"T08:00";
+  document.getElementById("end").value=generateStringDate()+"T10:00";
+}
+
+function generateStringDate(){
+  let day = formatDate(selectedDate.day);
+  let month = formatDate(selectedDate.month);
+  let date = selectedDate.year+"-"+month+"-"+day;
+  return date;
+}
+
+function formatDate(date){
+  if(date<10) return date = "0"+date;
+  return date;
 }
 
 getPresentDate();
 writeSelectedMonth("January");
 daysNames.forEach( (day) => displayWeek(day));
 drawDates();
-highLigthDate(presentDate.day);
+highLigthDate(selectedDate.day);
 
 
