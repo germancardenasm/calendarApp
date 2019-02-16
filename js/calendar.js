@@ -10,11 +10,11 @@ let selectedDate = {
 
 function getPresentDate(){
     let date = new Date();
-    selectedDate.day=date.getDate();
-    selectedDate.month=date.getMonth()+1;
+    selectedDate.day= date.getDate();
+    selectedDate.month= date.getMonth()+1;
 }
 
-function writeSelectedMonth(monthName){
+function writeSelectedMonth(){
     let month = document.getElementById("monthName");
     month.innerHTML=months[selectedDate.month].name;
 }
@@ -78,7 +78,7 @@ function selectDate(selectedDate){
 function highLigthDate(dayToHighLigth){
     let day = document.getElementById(dayToHighLigth);
     day.classList.add("highLigth");
-    selectedDate.day=day.id;
+    selectedDate.day=parseInt(day.id);
 
 }
 
@@ -105,7 +105,7 @@ function formatDate(date){
 }
 
 getPresentDate();
-writeSelectedMonth("January");
+writeSelectedMonth();
 daysNames.forEach( (day) => displayWeek(day));
 drawDates();
 highLigthDate(selectedDate.day);

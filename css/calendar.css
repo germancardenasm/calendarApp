@@ -112,13 +112,39 @@ header{
     padding: 1em;
 }
 
-input[type="text"], input[type="email"], input[type="number"]{
+form{
+    text-align: right;
+    font-size: 14px;
+    padding: 1%;
+}
+h4{
+    margin-bottom: 1em;
+    font-size: 30px;
+    color:  var(--primaryColor);
+}
+input[type="text"], input[type="email"], input[type="datetime-local"]{
     width: 70%;
     max-width: 40em;
     border: none;
     border-bottom: 2px solid var(--thirdColor);
-    margin: 1em;
+    line-height: 1em;
+    margin-bottom: 2em; 
+    font-size: 14px;
   }
-label{
-    font-size: 12px;
-}
+
+  label{
+    margin-right: 2em;
+  }
+
+#submit{
+    background-color: var(--thirdColor); 
+    color: var(--forthColor);
+    border: none;
+    border-radius: 0.3em;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+   
+  }
+  
