@@ -1,3 +1,10 @@
+:root{
+    --primaryColor: #222831;
+    --secondaryColor: #393e46;
+    --thirdColor: #00adb5;
+    --forthColor: #eeeeee;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -10,7 +17,7 @@ body{
 }
 
 header{
-    color: black;
+    color: var(--primaryColor);
     margin-bottom: 1em;
 }
 
@@ -20,16 +27,16 @@ header{
     max-width: 500px;
     flex-direction: column;
     margin: 0 auto;
-    border-top: 1px solid #00adb5;
-    border-right: 1px solid #00adb5;
+    border-top: 1px solid var(--thirdColor);
+    border-right: 1px solid var(--thirdColor);
 }
 
 #month{
     text-align: center;
     padding: 0.5em;
-    color: #00adb5;
-    border-bottom: 1px solid #00adb5;
-    border-left: 1px solid #00adb5;
+    color: var(--primaryColor);
+    border-bottom: 1px solid var(--thirdColor);
+    border-left: 1px solid var(--thirdColor);
 }
 
 #week{
@@ -40,9 +47,9 @@ header{
 
 .weekDayName{
     width: 14.2857%;
-    border-left: 1px solid #00adb5;
-    border-bottom: 1px solid #00adb5;
-    color: #393e46;
+    border-left: 1px solid var(--thirdColor);
+    border-bottom: 1px solid var(--thirdColor);
+    color: var(--thirdColor);
     text-align: center;
     padding: 0.5em;
     font-size: 11px;
@@ -55,13 +62,13 @@ header{
 }
 
 .date{
-    position: relative;
+    font-size: 12px;
+    height: 0;
     width: 14.2857%;
-    padding-top:  14.2857%;
-    border-left: 1px solid #00adb5;
-    border-bottom: 1px solid #00adb5;
-    background-color: #eeeeee; 
-  
+    padding-bottom:  14.2857%;
+    border-left: 1px solid var(--thirdColor);
+    border-bottom: 1px solid var(--thirdColor);
+    background-color: var(--forthColor); 
 }
 
 .dateNumber{
@@ -75,8 +82,8 @@ header{
 .fullFillSpace{
     width: 14.2857%;
     padding-top:  14.2857%;
-    border-bottom: 1px solid #00adb5;
-    border-left: 1px solid #00adb5;
+    border-bottom: 1px solid var(--thirdColor);
+    border-left: 1px solid var(--thirdColor);
 }
 
 .fullFillSpace ~ .fullFillSpace{
@@ -84,7 +91,7 @@ header{
 }
 
 .highLigth{
-    background-color: #00adb5; 
+    background-color: var(--thirdColor); 
 }
 
 

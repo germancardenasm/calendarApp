@@ -1,79 +1,6 @@
 
 let daysNames = ["S","M","T","W","T","F","S"];
-let months = {
-    "1": {
-      "name": "January",
-      "short": "Jan",
-      "number": 1,
-      "days": 31
-    },
-    "2": {
-      "name": "February",
-      "short": "Feb",
-      "number": 2,
-      "days": 28
-    },
-    "3": {
-      "name": "March",
-      "short": "Mar",
-      "number": 3,
-      "days": 31
-    },
-    "4": {
-      "name": "April",
-      "short": "Apr",
-      "number": 4,
-      "days": 30
-    },
-    "5": {
-      "name": "May",
-      "short": "May",
-      "number": 5,
-      "days": 31
-    },
-    "6": {
-      "name": "June",
-      "short": "Jun",
-      "number": 6,
-      "days": 30
-    },
-    "7": {
-      "name": "July",
-      "short": "Jul",
-      "number": 7,
-      "days": 31
-    },
-    "8": {
-      "name": "August",
-      "short": "Aug",
-      "number": 8,
-      "days": 31
-    },
-    "9": {
-      "name": "September",
-      "short": "Sep",
-      "number": 9,
-      "days": 30
-    },
-    "10": {
-      "name": "October",
-      "short": "Oct",
-      "number": 10,
-      "days": 31
-    },
-    "11": {
-      "name": "November",
-      "short": "Nov",
-      "number": 11,
-      "days": 30
-    },
-    "12": {
-      "name": "December",
-      "short": "Dec",
-      "number": 12,
-      "days": 31
-    }
-  }
+
 
 let presentDate = { 
     day: 0,
@@ -104,13 +31,11 @@ function displayWeek(day){
 function displayDates(numOfDate){
     let datesContainer= document.getElementById("datesContainer")
     let date = document.createElement("div");
+    date.addEventListener("click",highLigthDate)
     date.classList.add("date");
     date.id=numOfDate; 
-    let dateNumber= document.createElement("div");
-    dateNumber.innerHTML=numOfDate;
-    date.appendChild(dateNumber);
-    datesContainer.appendChild(date);
-    dateNumber.classList.add("dateNumber");
+    date.innerHTML=numOfDate;
+    datesContainer.appendChild(date);   
 }
 
 function fullFillView(){
@@ -141,7 +66,7 @@ function drawBlankSpace(){
 }
 
 function highLigthDate(dayToHighLigth){
-    let day = document.getElementById(dayToHighLigth);
+    let day = document.getElementById(dayToHighLigth.target.id);
     day.classList.add("highLigth");
 }
 
@@ -149,6 +74,6 @@ getPresentDate();
 writeSelectedMonth("January");
 daysNames.forEach( (day) => displayWeek(day));
 drawDates();
-highLigthDate(presentDate.day);
+//highLigthDate(document.getElementById(presentDate.day));
 
 
