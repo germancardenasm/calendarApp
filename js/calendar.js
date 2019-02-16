@@ -31,7 +31,7 @@ function displayWeek(day){
 function displayDates(numOfDate){
     let datesContainer= document.getElementById("datesContainer")
     let date = document.createElement("div");
-    date.addEventListener("click",highLigthDate)
+    date.addEventListener("click",selectDate);
     date.classList.add("date");
     date.id=numOfDate; 
     date.innerHTML=numOfDate;
@@ -65,8 +65,16 @@ function drawBlankSpace(){
     }
 }
 
+function selectDate(selectedDate){
+  let highlightDate = document.getElementsByClassName("highLigth");
+  highlightDate = document.getElementById(highlightDate[0].id);
+  highlightDate.className="date";
+  let day = selectedDate.target.id;
+  highLigthDate(day);
+}
+
 function highLigthDate(dayToHighLigth){
-    let day = document.getElementById(dayToHighLigth.target.id);
+    let day = document.getElementById(dayToHighLigth);
     day.classList.add("highLigth");
 }
 
@@ -74,6 +82,6 @@ getPresentDate();
 writeSelectedMonth("January");
 daysNames.forEach( (day) => displayWeek(day));
 drawDates();
-//highLigthDate(document.getElementById(presentDate.day));
+highLigthDate(presentDate.day);
 
 
