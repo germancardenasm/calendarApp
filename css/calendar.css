@@ -5,17 +5,19 @@
 }
 
 body{
-    padding: 5% 30%;
+    padding: 5% 10%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 header{
-    margin: 1em;
     color: black;
+    margin-bottom: 1em;
 }
 
 #calendar{
     display: flex;
+    flex-basis: 90%;
+    max-width: 500px;
     flex-direction: column;
     margin: 0 auto;
     border-top: 1px solid #00adb5;
@@ -33,7 +35,7 @@ header{
 #week{
     display: flex;
     flex-direction: row;
-    font-size: 10px;
+    
 }
 
 .weekDayName{
@@ -43,6 +45,7 @@ header{
     color: #393e46;
     text-align: center;
     padding: 0.5em;
+    font-size: 11px;
 }
 
 #datesContainer{
@@ -58,7 +61,7 @@ header{
     border-left: 1px solid #00adb5;
     border-bottom: 1px solid #00adb5;
     background-color: #eeeeee; 
-    font-size:12px;
+  
 }
 
 .dateNumber{
@@ -66,6 +69,7 @@ header{
     top: 0;
     left: 0;
     padding: 0.5em;
+    font-size:11px;
 }
 
 .fullFillSpace{
@@ -78,6 +82,11 @@ header{
 .fullFillSpace ~ .fullFillSpace{
     border-left: none;
 }
+
+.highLigth{
+    background-color: #00adb5; 
+}
+
 
 .text-center{
     text-align: center;
