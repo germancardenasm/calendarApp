@@ -79,17 +79,42 @@ function highLigthDate(dayToHighLigth){
     let day = document.getElementById(dayToHighLigth);
     day.classList.add("highLigth");
     selectedDate.day=parseInt(day.id);
-
 }
 
 function displayAppointmentMenu(){
-
   setDefaultAppointmentDate();
+  hideCalendar();
+  showAppointment();
 }
 
 function setDefaultAppointmentDate(){
   document.getElementById("start").value=generateStringDate()+"T08:00";
   document.getElementById("end").value=generateStringDate()+"T10:00";
+}
+
+function showCalendar(){
+  let calendar = document.getElementById("calendar");
+  calendar.classList.remove("invisible");
+}
+
+function hideCalendar(){
+  let calendar = document.getElementById("calendar");
+  calendar.classList.add("invisible");
+}
+
+function showAppointment(){
+  let appointmentMenu = document.getElementById("appointmentMenu");
+  appointmentMenu.classList.remove("invisible"); 
+}
+
+function hideAppointment(){
+  let appointmentMenu = document.getElementById("appointmentMenu");
+  appointmentMenu.classList.add("invisible");
+}
+
+function closeAppointment(){
+  hideAppointment();
+  showCalendar();
 }
 
 function generateStringDate(){

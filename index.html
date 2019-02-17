@@ -4,17 +4,19 @@
 		<meta charset="utf-8">
 		<title>Calendar App</title>
 		<link rel="stylesheet" href="css/calendar.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	</head>
 	<body>
 		<header><h1>CalendApp</h1></header>
-		  <div id="calendar">	
-				<div id="month"><h2 id="monthName"></h2></div>
-				<div id="week"></div>
-			  <div id="datesContainer"></div>
+		  <div id="calendar" class="calendar">	
+				<div id="month" class="month"><h2 id="monthName"></h2></div>
+				<div id="week" class="week"></div>
+			  <div id="datesContainer" class="datesContainer"></div>
 			</div>
-			<div id="appointmentMenu" >
+			<div id="appointmentMenu" class="appointmentMenu invisible">
 				<h4>Appointment</h4>
-				<form id="survey-form">				
+				<div id="closeMenu" class="closeMenu" onclick="closeAppointment()"><i class="fas fa-times fa-lg"></i></div>
+				<form id="survey-form" class="survey-form">				
 							<label id="name-label" for=name>Name: </label> 
 							<input type="text" id="appointmentName" name="name" placeholder="Enter Appointment name" required/><br>
 							<label id="email-label" for=email>Email: </label> 

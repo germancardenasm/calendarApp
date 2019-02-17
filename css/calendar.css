@@ -21,7 +21,7 @@ header{
     margin-bottom: 1em;
 }
 
-#calendar{
+.calendar{
     display: flex;
     flex-basis: 90%;
     max-width: 500px;
@@ -31,7 +31,7 @@ header{
     border-right: 1px solid var(--thirdColor);
 }
 
-#month{
+.month{
     text-align: center;
     font-size: 14px;
     padding: 0.5em;
@@ -40,10 +40,9 @@ header{
     border-left: 1px solid var(--thirdColor);
 }
 
-#week{
+.week{
     display: flex;
-    flex-direction: row;
-    
+    flex-direction: row;   
 }
 
 .weekDayName{
@@ -56,7 +55,7 @@ header{
     font-size: 11px;
 }
 
-#datesContainer{
+.datesContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -99,11 +98,9 @@ header{
     text-align: center;
 }
 
-.invisible {
-    visibility: hidden;
-  }
-
-#appointmentMenu{
+.appointmentMenu{
+    display: block;
+    position: relative;
     border: 2px double var(--thirdColor);
     width: 100%;
     max-width: 500px;
@@ -113,18 +110,32 @@ header{
 }
 
 form{
-    text-align: right;
+    text-align: left;
     font-size: 14px;
     padding: 1%;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 h4{
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     font-size: 30px;
     color:  var(--primaryColor);
 }
+
+.closeMenu{
+    position: absolute;
+    top:1.5em;
+    right: 1.5em;
+}
+
+label{
+    display: block;
+    margin-bottom: 0.5em;
+  }
+
 input[type="text"], input[type="email"], input[type="datetime-local"]{
-    width: 70%;
-    max-width: 40em;
+    width: 100%;
+    max-width: 35em;
     border: none;
     border-bottom: 2px solid var(--thirdColor);
     line-height: 1em;
@@ -132,9 +143,6 @@ input[type="text"], input[type="email"], input[type="datetime-local"]{
     font-size: 14px;
   }
 
-  label{
-    margin-right: 2em;
-  }
 
 #submit{
     background-color: var(--thirdColor); 
@@ -148,3 +156,24 @@ input[type="text"], input[type="email"], input[type="datetime-local"]{
    
   }
   
+  .invisible {
+    display: none;
+  }
+
+  @media (min-width:601px)
+  {
+    form{
+        text-align: right;
+    }
+
+    label{
+        font-size: 16px;
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      input[type="text"], input[type="email"], input[type="datetime-local"]{
+        width: 65%;
+      }
+
+  }
