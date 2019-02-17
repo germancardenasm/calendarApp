@@ -31,7 +31,7 @@ header{
     border-right: 1px solid var(--thirdColor);
 }
 
-.month{
+.monthYear{
     text-align: center;
     font-size: 14px;
     padding: 0.5em;
@@ -79,15 +79,16 @@ header{
     font-size:11px;
 }
 
+.today{
+    color: red;
+    text-decoration: underline red;
+}
+
 .fullFillSpace{
     width: 14.2857%;
     padding-top:  14.2857%;
     border-bottom: 1px solid var(--thirdColor);
     border-left: 1px solid var(--thirdColor);
-}
-
-.fullFillSpace ~ .fullFillSpace{
-    border-left: none;
 }
 
 .highLigth{
