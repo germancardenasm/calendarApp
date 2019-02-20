@@ -11,9 +11,38 @@
     box-sizing: border-box;
 }
 
+
 body{
     padding: 5% 10%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+h1 {
+	color: #323B3C;
+    font-family: 'PT Sans';
+	font-size:  45px;
+	font-weight: 700;
+	line-height: 60px;
+	letter-spacing: 5px;
+	margin-bottom: 48px;
+	text-transform: uppercase;
+}
+
+p {
+	color: #516163;
+	font-family: 'PT Sans';
+	font-size: 22px;
+	font-weight: 300;
+	line-height: 36px;
+	margin-bottom: 36px;
+}
+
+a {
+	color: #63B2BB;	
+}
+
+a:hover {
+	color: #323B3C;
 }
 
 header{
@@ -24,7 +53,7 @@ header{
 .calendar{
     display: flex;
     flex-basis: 90%;
-    max-width: 500px;
+    max-width: 600px;
     flex-direction: column;
     margin: 0 auto;
     border-top: 1px solid var(--thirdColor);
@@ -33,7 +62,7 @@ header{
 
 .monthYear{
     text-align: center;
-    font-size: 14px;
+    font-size: 25px;
     padding: 0.5em;
     color: var(--primaryColor);
     border-bottom: 1px solid var(--thirdColor);
@@ -46,13 +75,13 @@ header{
 }
 
 .weekDayName{
+    font-size: 15px;
     width: 14.2857%;
     border-left: 1px solid var(--thirdColor);
     border-bottom: 1px solid var(--thirdColor);
     color: var(--thirdColor);
     text-align: center;
     padding: 0.5em;
-    font-size: 11px;
 }
 
 .datesContainer{
@@ -62,10 +91,13 @@ header{
 }
 
 .date{
-    font-size: 12px;
+    font-family: 'Merriweather', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--secondaryColor);
     height: 0;
     width: 14.2857%;
-    padding-bottom:  14.2857%;
+    padding-bottom:  14.2857%;  
     border-left: 1px solid var(--thirdColor);
     border-bottom: 1px solid var(--thirdColor);
     background-color: var(--forthColor); 

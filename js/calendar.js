@@ -143,17 +143,19 @@ function saveAppointment(event){
   event.preventDefault();
   let data = { 
               name: "",
+              email:"",
               start: "",
               end: "",
               description: ""
   };
    
   data.name=document.getElementById("appointmentName").value;
-  data.start=document.getElementById("start").value;
-  data.end=document.getElementById("end").value;
+  data.email=document.getElementById("email").value;
+  data.start= new Date(document.getElementById("start").value);
+  data.end= new Date(document.getElementById("end").value);
   data.description=document.getElementById("description").value;
-  appointments.push(data);
-  console.log(data);
+  appointments[data.start.getDate()]=data;
+  closeAppointment();
 }
 
 function generateStringDate(){
