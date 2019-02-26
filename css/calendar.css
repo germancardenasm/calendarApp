@@ -15,6 +15,7 @@
 body{
     padding: 5% 10%;
     font-family: 'PT Sans Narrow', sans-serif;
+    min-width: 375px;
 }
 
 h1 {

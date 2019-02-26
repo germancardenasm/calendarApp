@@ -84,25 +84,24 @@ function highLigthDate(daySelected){
   highlightDate = document.getElementById(highlightDate[0].id);
   highlightDate.classList.remove("highLigth");
   let day = daySelected.target.id;
-  colorCellDay(day);
+  colorCellHighLigthDate(day);
 }
 
-function colorCellDay(dayToHighLigth){
+function colorCellHighLigthDate(dayToHighLigth){
     let day = document.getElementById(dayToHighLigth);
     day.classList.add("highLigth");
-    selectedDay.date=parseInt(day.id);
+    selectedDay.setDate(parseInt(day.id));
 }
 
 function displayAppointmentMenu(){
-  if(selectedDay.date<presentDate.getDate()) {
+  if(selectedDay.getDate()<presentDate.getDate()) {
     alert("You can not create an appointment in the past");
     return;
   }
-
   hideCalendar();
   showAppointment();
-  if(appointments[selectedDay.date]){
-    loadAppointment(selectedDay.date);
+  if(appointments[selectedDay.getDate()]){
+    loadAppointment(selectedDay.getDate());
   } else {
     setDefaultAppointmentDate();
   }
@@ -112,15 +111,14 @@ function loadAppointment(day){
   let appointmentForm = document.getElementById("appointment-form");
   appointmentForm[0].value = appointments[day].name;
   appointmentForm[1].value = appointments[day].email;
-  var test = generateStringDate(appointments[day].start)
-  var test2 = generateStringHour(appointments[day].start);
-  appointmentForm[3].value = appointments[day].end;
+  appointmentForm[2].value = generateStringDate(appointments[day].start) + generateStringHour(appointments[day].start);
+  appointmentForm[3].value = generateStringDate(appointments[day].end) + generateStringHour(appointments[day].end);
   appointmentForm[4].value = appointments[day].description;
 }
 
 function setDefaultAppointmentDate(){
   document.getElementById("start").value=generateStringDate(selectedDay)+"T08:00";
-  document.getElementById("end").value=generateStringDate(selectedDay)+"T10:00";
+  document.getElementById("end").value=generateStringDate(selectedDay)+"T09:00";
 }
 
 function showCalendar(){
@@ -169,22 +167,23 @@ function saveAppointment(event){
   closeAppointment();
 }
 
-function showAppoinmentInCalendar(appoinmentData){
-  let calendarDay = document.getElementById(appoinmentData.start.getDate());
+function showAppoinmentInCalendar(appointment){
+  let calendarDay = document.getElementById(appointment.start.getDate());
   let calendarAppoinment = document.createElement('div');
   calendarAppoinment.classList.add('appoinmentVisual');
-  calendarAppoinment.innerHTML=appoinmentData.name;
+  calendarAppoinment.innerHTML=appointment.name;
   calendarDay.appendChild(calendarAppoinment);
 }
+
 
 function clearForm(){
   document.getElementById("appointment-form").reset();
 }
 
 function generateStringDate(dateToStringify){
-  let day = formatDate(dateToStringify.date);
-  let month = formatDate(dateToStringify.month);
-  let date = dateToStringify.year+"-"+month+"-"+day;
+  let day = formatDate(dateToStringify.getDate());
+  let month = formatDate(dateToStringify.getMonth()+1);
+  let date = dateToStringify.getFullYear()+"-"+month+"-"+day;
   return date;
 }
 
