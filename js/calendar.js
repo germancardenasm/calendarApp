@@ -3,28 +3,18 @@ let daysNames = ["S","M","T","W","T","F","S"];
 
 let presentDate = new Date();
 
-let selectedDay = { 
-    date: 1,
-    day: 1,
-    month: 1,
-    year: 2019
-} 
+let today = new Date();
 
-function getPresentDate(){
-    let date = new Date();
-    selectedDay.date= date.getDate();
-    selectedDay.month= date.getMonth()+1;
-    selectedDay.year = date.getFullYear();
-    selectedDay.day = date.getDay();
-}
+let selectedDay = new Date();
+
 
 function writeSelectedMonth(){
     let month = document.getElementById("monthName");
-    month.innerHTML=months[selectedDay.month].name;
+    month.innerHTML=months[today.getMonth()+1].name;
 }
 
 function displayWeek(day){
-    let week= document.getElementById("week")
+    let week= document.getElementById("week");
     let dayOfTheWeek = document.createElement("div");
     dayOfTheWeek.classList.add("weekDayName");
     let dayName = document.createElement("h3");
@@ -34,41 +24,45 @@ function displayWeek(day){
 }
 
 function drawDates(){
-  let firstDay = getFirstDay();
-  if(firstDay>0) drawBlankSpace(firstDay);
+  let firstDayOfTheMonth = getFirstDayOfTheMonth(selectedDay.getMonth(), selectedDay.getFullYear());
 
-  for(let i=1; i<=months[selectedDay.month].days; i++)
+  if(firstDayOfTheMonth>0) drawBlankSpace(firstDayOfTheMonth);
+
+  for(let i=1; i<=months[selectedDay.getMonth()].days; i++)
     displayDates(i);
   
   document.getElementById(presentDate.getDate()).classList.add("today");
+  document.getElementById(presentDate.getDate()).classList.add("highLigth");
 
-  if(thereIsBlankSpace(firstDay)){
-    let spacesToFullFill = 7-(months[selectedDay.month].days+firstDay)%7;
+  if(thereIsBlankSpace(firstDayOfTheMonth)){
+    let spacesToFullFill = 7-(months[selectedDay.getMonth()].days+firstDayOfTheMonth)%7;
     drawBlankSpace(spacesToFullFill); 
   }      
 }
 
-function getFirstDay(){
+function getFirstDayOfTheMonth(month, year){
   let date = new Date();
-  date.setDate(1);
+  date.setMonth(month)
+  date.setFullYear(year)
+  date.setDate(1);  
   date = date.getDay();
   return date;
 }
 
-function displayDates(numOfDate){
+function displayDates(dateNumber){
     let datesContainer= document.getElementById("datesContainer");
     let date = document.createElement("div");
-    date.addEventListener("click",selectDate);
+    date.addEventListener("click",highLigthDate);
     date.addEventListener("dblclick", displayAppointmentMenu);
     date.classList.add("date");
-    date.id=numOfDate; 
-    date.innerHTML=numOfDate;
+    date.id=dateNumber; 
+    date.innerHTML=dateNumber;
     datesContainer.appendChild(date);   
 }
 
 function thereIsBlankSpace(firstDay){
-  let theriIs= months[selectedDay.month].days%7 + firstDay>1
-    return theriIs
+  let thereIs= months[selectedDay.getMonth()].days%7 + firstDay>1
+    return thereIs
 }
 
 function drawBlankSpace(qtyOfSpacesToFullFill){
@@ -85,15 +79,15 @@ function fullFillView(){
   datesContainer.appendChild(date);
 }
 
-function selectDate(selectedDay){
+function highLigthDate(daySelected){
   let highlightDate = document.getElementsByClassName("highLigth");
   highlightDate = document.getElementById(highlightDate[0].id);
   highlightDate.classList.remove("highLigth");
-  let day = selectedDay.target.id;
-  highLigthDate(day);
+  let day = daySelected.target.id;
+  colorCellDay(day);
 }
 
-function highLigthDate(dayToHighLigth){
+function colorCellDay(dayToHighLigth){
     let day = document.getElementById(dayToHighLigth);
     day.classList.add("highLigth");
     selectedDay.date=parseInt(day.id);
@@ -104,14 +98,29 @@ function displayAppointmentMenu(){
     alert("You can not create an appointment in the past");
     return;
   }
-  setDefaultAppointmentDate();
+
   hideCalendar();
   showAppointment();
+  if(appointments[selectedDay.date]){
+    loadAppointment(selectedDay.date);
+  } else {
+    setDefaultAppointmentDate();
+  }
+}
+
+function loadAppointment(day){
+  let appointmentForm = document.getElementById("appointment-form");
+  appointmentForm[0].value = appointments[day].name;
+  appointmentForm[1].value = appointments[day].email;
+  var test = generateStringDate(appointments[day].start)
+  var test2 = generateStringHour(appointments[day].start);
+  appointmentForm[3].value = appointments[day].end;
+  appointmentForm[4].value = appointments[day].description;
 }
 
 function setDefaultAppointmentDate(){
-  document.getElementById("start").value=generateStringDate()+"T08:00";
-  document.getElementById("end").value=generateStringDate()+"T10:00";
+  document.getElementById("start").value=generateStringDate(selectedDay)+"T08:00";
+  document.getElementById("end").value=generateStringDate(selectedDay)+"T10:00";
 }
 
 function showCalendar(){
@@ -155,14 +164,36 @@ function saveAppointment(event){
   data.end= new Date(document.getElementById("end").value);
   data.description=document.getElementById("description").value;
   appointments[data.start.getDate()]=data;
+  showAppoinmentInCalendar(data);  
+  clearForm();
   closeAppointment();
 }
 
-function generateStringDate(){
-  let day = formatDate(selectedDay.date);
-  let month = formatDate(selectedDay.month);
-  let date = selectedDay.year+"-"+month+"-"+day;
+function showAppoinmentInCalendar(appoinmentData){
+  let calendarDay = document.getElementById(appoinmentData.start.getDate());
+  let calendarAppoinment = document.createElement('div');
+  calendarAppoinment.classList.add('appoinmentVisual');
+  calendarAppoinment.innerHTML=appoinmentData.name;
+  calendarDay.appendChild(calendarAppoinment);
+}
+
+function clearForm(){
+  document.getElementById("appointment-form").reset();
+}
+
+function generateStringDate(dateToStringify){
+  let day = formatDate(dateToStringify.date);
+  let month = formatDate(dateToStringify.month);
+  let date = dateToStringify.year+"-"+month+"-"+day;
   return date;
+}
+
+function generateStringHour(time){
+  let hour = "T";
+  hour += formatDate(time.getHours());
+  hour += ":";
+  hour += formatDate(time.getMinutes());
+  return hour;
 }
 
 function formatDate(date){
@@ -170,10 +201,8 @@ function formatDate(date){
   return date;
 }
 
-getPresentDate();
 writeSelectedMonth();
 daysNames.forEach( (day) => displayWeek(day));
 drawDates();
-highLigthDate(selectedDay.date);
 
 
