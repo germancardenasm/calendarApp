@@ -10,7 +10,7 @@ let selectedDay = new Date();
 
 function writeSelectedMonth(){
     let month = document.getElementById("monthName");
-    month.innerHTML=months[today.getMonth()+1].name;
+    month.innerHTML=months[today.getMonth()].name;
 }
 
 function displayWeek(day){
@@ -29,7 +29,7 @@ function drawDates(){
   if(firstDayOfTheMonth>0) drawBlankSpace(firstDayOfTheMonth);
 
   for(let i=1; i<=months[selectedDay.getMonth()].days; i++)
-    displayDates(i);
+    createDateDiv(i);
   
   document.getElementById(presentDate.getDate()).classList.add("today");
   document.getElementById(presentDate.getDate()).classList.add("highLigth");
@@ -49,7 +49,7 @@ function getFirstDayOfTheMonth(month, year){
   return date;
 }
 
-function displayDates(dateNumber){
+function createDateDiv(dateNumber){
     let datesContainer= document.getElementById("datesContainer");
     let date = document.createElement("div");
     date.addEventListener("click",highLigthDate);
@@ -68,11 +68,11 @@ function thereIsBlankSpace(firstDay){
 function drawBlankSpace(qtyOfSpacesToFullFill){
     for(let i=0; i<qtyOfSpacesToFullFill; i++)
     { 
-      this.fullFillView();
+      this.createBlankSpaceDiv();
     }
 }
 
-function fullFillView(){
+function createBlankSpaceDiv(){
   let datesContainer= document.getElementById("datesContainer")
   let date = document.createElement("div");
   date.classList.add("fullFillSpace");
@@ -114,6 +114,22 @@ function loadAppointment(day){
   appointmentForm[2].value = generateStringDate(appointments[day].start) + generateStringHour(appointments[day].start);
   appointmentForm[3].value = generateStringDate(appointments[day].end) + generateStringHour(appointments[day].end);
   appointmentForm[4].value = appointments[day].description;
+  hideButton
+  disableForm(true);
+}
+
+function hideButton(){
+  let submitButton = document.getElementById("submit");
+  submitButton.classList.add("invisible");
+
+}
+
+function disableForm(order){
+  let form = document.getElementById("appointment-form");
+  let elements = form.elements;
+  for (var i = 0, len = elements.length; i < len; ++i) {
+      elements[i].readOnly = order;
+  }
 }
 
 function setDefaultAppointmentDate(){
@@ -142,8 +158,21 @@ function hideAppointment(){
 }
 
 function closeAppointment(){
+  let submitButton = document.getElementById("submit");
   hideAppointment();
+  clearForm();
+  disableForm(false);
+  submitButton.classList.remove("invisible");
   showCalendar();
+}
+
+function editAppointment(){
+debugger;
+
+}
+
+function eraseAppointment(){
+debugger;
 }
 
 function saveAppointment(event){
@@ -174,7 +203,6 @@ function showAppoinmentInCalendar(appointment){
   calendarAppoinment.innerHTML=appointment.name;
   calendarDay.appendChild(calendarAppoinment);
 }
-
 
 function clearForm(){
   document.getElementById("appointment-form").reset();
