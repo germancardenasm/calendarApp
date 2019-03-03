@@ -190,10 +190,17 @@ function saveAppointment(event){
 
 function showAppoinmentInCalendar(appointment){
   let calendarDay = document.getElementById(appointment.start.getDate());
-  let calendarAppoinment = document.createElement('div');
-  calendarAppoinment.classList.add('appoinmentVisual');
-  calendarAppoinment.innerHTML=appointment.name;
-  calendarDay.appendChild(calendarAppoinment);
+  if(calendarDay.children.length)
+  {
+    document.getElementById("appointment"+appointment.start.getDate()).innerHTML=appointment.name;
+  }else{
+    let calendarAppoinment = document.createElement('div');
+    calendarAppoinment.classList.add('appoinmentVisual');
+    calendarAppoinment.id= "appointment"+appointment.start.getDate();
+    calendarAppoinment.innerHTML=appointment.name;
+    calendarDay.appendChild(calendarAppoinment);
+  }
+
 }
 
 function clearForm(){
