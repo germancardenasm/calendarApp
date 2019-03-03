@@ -175,6 +175,10 @@ form{
     justify-content: space-between;
 }
 
+.icon:hover{
+    background-color: var(--thirdColor);
+}
+
 label{
     display: block;
     margin-bottom: 0.5em;
@@ -190,6 +194,9 @@ input[type="text"], input[type="email"], input[type="datetime-local"]{
     font-size: 14px;
   }
 
+.disableField{
+    color: gray;
+}
 
 #submit{
     background-color: var(--thirdColor); 

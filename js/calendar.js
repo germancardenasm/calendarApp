@@ -31,8 +31,8 @@ function drawDates(){
   for(let i=1; i<=months[selectedDay.getMonth()].days; i++)
     createDateDiv(i);
   
-  document.getElementById(presentDate.getDate()).classList.add("today");
-  document.getElementById(presentDate.getDate()).classList.add("highLigth");
+  document.getElementById(presentDate.getDate()).classList.add("today", "highLigth");
+
 
   if(thereIsBlankSpace(firstDayOfTheMonth)){
     let spacesToFullFill = 7-(months[selectedDay.getMonth()].days+firstDayOfTheMonth)%7;
@@ -98,8 +98,8 @@ function displayAppointmentMenu(){
     alert("You can not create an appointment in the past");
     return;
   }
-  hideCalendar();
-  showAppointment();
+  hideElement("calendar");
+  showElement("appointmentMenu");
   if(appointments[selectedDay.getDate()]){
     loadAppointment(selectedDay.getDate());
   } else {
@@ -111,17 +111,15 @@ function loadAppointment(day){
   let appointmentForm = document.getElementById("appointment-form");
   appointmentForm[0].value = appointments[day].name;
   appointmentForm[1].value = appointments[day].email;
-  appointmentForm[2].value = generateStringDate(appointments[day].start) + generateStringHour(appointments[day].start);
-  appointmentForm[3].value = generateStringDate(appointments[day].end) + generateStringHour(appointments[day].end);
+  appointmentForm[2].value = stringifyDate(appointments[day].start);
+  appointmentForm[3].value = stringifyDate(appointments[day].end);
   appointmentForm[4].value = appointments[day].description;
-  hideButton
+  hideElement("submit");
   disableForm(true);
 }
 
-function hideButton(){
-  let submitButton = document.getElementById("submit");
-  submitButton.classList.add("invisible");
-
+function stringifyDate(day){
+  return generateStringDate(day) + generateStringHour(day);
 }
 
 function disableForm(order){
@@ -129,6 +127,10 @@ function disableForm(order){
   let elements = form.elements;
   for (var i = 0, len = elements.length; i < len; ++i) {
       elements[i].readOnly = order;
+      if(order == true)
+       elements[i].classList.add("disableField");
+      else
+       elements[i].classList.remove("disableField");
   }
 }
 
@@ -137,38 +139,28 @@ function setDefaultAppointmentDate(){
   document.getElementById("end").value=generateStringDate(selectedDay)+"T09:00";
 }
 
-function showCalendar(){
-  let calendar = document.getElementById("calendar");
+function showElement(element){
+  let calendar = document.getElementById(element);
   calendar.classList.remove("invisible");
 }
 
-function hideCalendar(){
-  let calendar = document.getElementById("calendar");
+function hideElement(element){
+  let calendar = document.getElementById(element);
   calendar.classList.add("invisible");
-}
-
-function showAppointment(){
-  let appointmentMenu = document.getElementById("appointmentMenu");
-  appointmentMenu.classList.remove("invisible"); 
-}
-
-function hideAppointment(){
-  let appointmentMenu = document.getElementById("appointmentMenu");
-  appointmentMenu.classList.add("invisible");
 }
 
 function closeAppointment(){
   let submitButton = document.getElementById("submit");
-  hideAppointment();
+  hideElement("appointmentMenu");
   clearForm();
   disableForm(false);
-  submitButton.classList.remove("invisible");
-  showCalendar();
+  showElement("submit");
+  showElement("calendar");
 }
 
 function editAppointment(){
-debugger;
-
+  disableForm(false);
+  showElement("submit");
 }
 
 function eraseAppointment(){
