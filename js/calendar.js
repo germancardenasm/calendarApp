@@ -1,16 +1,12 @@
-
 let daysNames = ["S","M","T","W","T","F","S"];
-
 let presentDate = new Date();
-
-let today = new Date();
-
+//let today = new Date();
 let selectedDay = new Date();
 
 
-function writeSelectedMonth(){
+function showSelectedMonthName(){
     let month = document.getElementById("monthName");
-    month.innerHTML=months[today.getMonth()].name;
+    month.innerHTML=months[presentDate.getMonth()].name;
 }
 
 function displayWeek(day){
@@ -26,13 +22,13 @@ function displayWeek(day){
 function drawDates(){
   let firstDayOfTheMonth = getFirstDayOfTheMonth(selectedDay.getMonth(), selectedDay.getFullYear());
 
-  if(firstDayOfTheMonth>0) drawBlankSpace(firstDayOfTheMonth);
+  if(firstDayOfTheMonth>0) 
+    drawBlankSpace(firstDayOfTheMonth);
 
   for(let i=1; i<=months[selectedDay.getMonth()].days; i++)
     createDateDiv(i);
   
   document.getElementById(presentDate.getDate()).classList.add("today", "highLigth");
-
 
   if(thereIsBlankSpace(firstDayOfTheMonth)){
     let spacesToFullFill = 7-(months[selectedDay.getMonth()].days+firstDayOfTheMonth)%7;
@@ -56,7 +52,7 @@ function createDateDiv(dateNumber){
     date.addEventListener("dblclick", displayAppointmentMenu);
     date.classList.add("date");
     date.id=dateNumber; 
-    date.innerHTML=dateNumber;
+    date.innerHTML=" "+dateNumber;
     datesContainer.appendChild(date);   
 }
 
@@ -80,15 +76,20 @@ function createBlankSpaceDiv(){
 }
 
 function highLigthDate(daySelected){
+
+  //if click is done over an appointment div, highligth date div and no the appointment div
+  if(daySelected.target.id.length>2)
+     daySelected.target.id = daySelected.target.id.slice(11,daySelected.target.id.length )
+
   let highlightDate = document.getElementsByClassName("highLigth");
   highlightDate = document.getElementById(highlightDate[0].id);
   highlightDate.classList.remove("highLigth");
   let day = daySelected.target.id;
-  colorCellHighLigthDate(day);
+  colorBackgroundOfCell(day);
 }
 
-function colorCellHighLigthDate(dayToHighLigth){
-    let day = document.getElementById(dayToHighLigth);
+function colorBackgroundOfCell(divToHighLigth){
+    let day = document.getElementById(divToHighLigth);
     day.classList.add("highLigth");
     selectedDay.setDate(parseInt(day.id));
 }
@@ -200,7 +201,6 @@ function showAppoinmentInCalendar(appointment){
     calendarAppoinment.innerHTML=appointment.name;
     calendarDay.appendChild(calendarAppoinment);
   }
-
 }
 
 function clearForm(){
@@ -227,7 +227,7 @@ function formatDate(date){
   return date;
 }
 
-writeSelectedMonth();
+showSelectedMonthName();
 daysNames.forEach( (day) => displayWeek(day));
 drawDates();
 
