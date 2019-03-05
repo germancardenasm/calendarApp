@@ -1,6 +1,5 @@
 let daysNames = ["S","M","T","W","T","F","S"];
 let presentDate = new Date();
-//let today = new Date();
 let selectedDay = new Date();
 
 
@@ -164,7 +163,10 @@ function editAppointment(){
 }
 
 function eraseAppointment(){
-debugger;
+  let   date = document.getElementById("start").value.slice(8,10);
+  delete appointments[Number(date)];
+  clearForm();
+  closeAppointment();
 }
 
 function saveAppointment(event){
