@@ -165,6 +165,8 @@ function editAppointment(){
 function eraseAppointment(){
   let   date = document.getElementById("start").value.slice(8,10);
   delete appointments[Number(date)];
+  let appointmentToErase = document.getElementById("appointment"+Number(date));
+  appointmentToErase.remove();
   clearForm();
   closeAppointment();
 }
