@@ -76,15 +76,14 @@ function createBlankSpaceDiv(){
 }
 
 function highLigthDate(daySelected){
-
+  let day = daySelected.target.id;;
   //if click is done over an appointment div, highligth date div and no the appointment div
   if(daySelected.target.id.length>2)
-     daySelected.target.id = daySelected.target.id.slice(11,daySelected.target.id.length )
+     day = daySelected.target.id.slice(11,daySelected.target.id.length )
 
   let highlightDate = document.getElementsByClassName("highLigth");
   highlightDate = document.getElementById(highlightDate[0].id);
   highlightDate.classList.remove("highLigth");
-  let day = daySelected.target.id;
   colorBackgroundOfCell(day);
 }
 
